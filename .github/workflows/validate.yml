@@ -1,9 +1,9 @@
 name: validate
 on:
   push:
-    branches: [pearson-release/olive.master]
+    branches: [pearson-release/olive.main]
   pull_request:
-    branches: [pearson-release/olive.master]
+    branches: [pearson-release/olive.main]
 jobs:
   tests:
     runs-on: ubuntu-latest

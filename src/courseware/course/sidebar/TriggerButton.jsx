@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
-import SidebarContext from './SidebarContext';
-import { SIDEBARS } from './sidebars';
+import SidebarContext from 'courseware/course/sidebar/SidebarContext';
+import { SIDEBARS } from 'courseware/course/sidebar/sidebars';
 
 function TriggerButton({
   sidebarId,

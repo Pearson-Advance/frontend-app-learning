@@ -5,7 +5,7 @@ import SidebarBase from 'courseware/course/sidebar/common/SidebarBase';
 import SidebarContext from 'courseware/course/sidebar/SidebarContext';
 import { ID } from 'courseware/course/sidebar/sidebars/outline/OutlineTrigger';
 
-import messages from './messages';
+import messages from 'courseware/course/sidebar/sidebars/outline/messages';
 
 ensureConfig(['SIDEBAR_MFE_BASE_URL']);
 
@@ -24,6 +24,7 @@ function OutlineSidebar({ intl }) {
       showTitleBar={false}
     >
       <iframe
+        id="OutlineSidebar"
         src={`${outlineUrl}?inContext`}
         className="d-flex w-100 border-0"
         style={{ minHeight: '60rem' }}

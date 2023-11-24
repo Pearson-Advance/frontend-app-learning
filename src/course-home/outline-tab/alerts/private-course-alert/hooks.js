@@ -1,6 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import React, { useContext, useMemo } from 'react';
 import { AppContext } from '@edx/frontend-platform/react';
+import { getConfig } from '@edx/frontend-platform';
 import { ALERT_TYPES, useAlert } from '../../../../generic/user-messages';
 import { useModel } from '../../../../generic/model-store';
 
@@ -20,7 +21,7 @@ export function usePrivateCourseAlert(courseId) {
   const isVisible = !enrolledUser && (privateOutline || authenticatedUser !== null);
   const payload = {
     anonymousUser: authenticatedUser === null,
-    canEnroll: outline && outline.enrollAlert ? outline.enrollAlert.canEnroll : false,
+    canEnroll: getConfig().DISABLE_SELF_ENROLLMENT !== 'true' && outline && outline.enrollAlert ? outline.enrollAlert.canEnroll : false,
     courseId,
   };
 

@@ -3,6 +3,7 @@ import React, {
   useContext, useMemo,
 } from 'react';
 import { AppContext } from '@edx/frontend-platform/react';
+import { getConfig } from '@edx/frontend-platform';
 
 import { useAlert } from '../../generic/user-messages';
 import { useModel } from '../../generic/model-store';
@@ -23,7 +24,7 @@ export function useEnrollmentAlert(courseId) {
    */
   const isVisible = !enrolledUser && authenticatedUser !== null && privateOutline;
   const payload = {
-    canEnroll: outline && outline.enrollAlert ? outline.enrollAlert.canEnroll : false,
+    canEnroll: getConfig().DISABLE_SELF_ENROLLMENT !== 'true' && outline && outline.enrollAlert ? outline.enrollAlert.canEnroll : false,
     courseId,
     extraText: outline && outline.enrollAlert ? outline.enrollAlert.extraText : '',
     isStaff: course && course.isStaff,

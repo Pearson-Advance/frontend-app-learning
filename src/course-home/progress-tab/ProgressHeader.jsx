@@ -16,12 +16,12 @@ const ProgressHeader = () => {
 
   const { administrator, userId } = getAuthenticatedUser();
 
-  const { studioUrl, username } = useModel('progress', courseId);
+  const { studioUrl, username, fullName } = useModel('progress', courseId);
 
   const viewingOtherStudentsProgressPage = (targetUserId && targetUserId !== userId);
 
   const pageTitle = viewingOtherStudentsProgressPage
-    ? intl.formatMessage(messages.progressHeaderForTargetUser, { username })
+    ? intl.formatMessage(messages.progressHeaderForTargetUser, { username: fullName || username })
     : intl.formatMessage(messages.progressHeader);
 
   return (

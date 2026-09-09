@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet';
 import { getConfig } from '@edx/frontend-platform';
 import { useToggle } from '@openedx/paragon';
 
-import { CourseTabsNavigation } from '../course-tabs';
+import { CourseTabsNavigation, filterTabsByRole } from '../course-tabs';
 import { useModel } from '../generic/model-store';
 import { AlertList } from '../generic/user-messages';
 import StreakModal from '../shared/streak-celebration';
@@ -38,6 +38,9 @@ const LoadedTabPage = ({
   const enrollmentAlert = useEnrollmentAlert(courseId);
 
   const activeTab = tabs.filter(tab => tab.slug === activeTabSlug)[0];
+
+  // Hide native tabs replaced by Pearson portals (e.g. Instructor) for suppressed roles.
+  const visibleTabs = filterTabsByRole(tabs);
 
   const streakLengthToCelebrate = celebrations && celebrations.streakLengthToCelebrate;
   const streakDiscountCouponEnabled = celebrations && celebrations.streakDiscountEnabled && verifiedMode;
@@ -80,7 +83,7 @@ const LoadedTabPage = ({
             ...logistrationAlert,
           }}
         />
-        <CourseTabsNavigation tabs={tabs} className="mb-3" activeTabSlug={activeTabSlug} />
+        <CourseTabsNavigation tabs={visibleTabs} className="mb-3" activeTabSlug={activeTabSlug} />
         <div id="main-content" className="container-xl">
           {children}
         </div>
